@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表的上拉加载更多</title>
+    <%--引入JQuery--%>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <style>
+        .red_list{
+            height: 10rem;
+            border: 1px solid #00bbd4;
+            background-color: #ff2600;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 54px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .red_load_more_content{
+            font-size: 54px;
+            text-align: center;
+        }
+        #id_list {
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            padding:10px;
+            overflow:auto;
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+<section id="id_list">
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+	<div class='red_list'>数据数据</div>
+</section>
+
+<script>
+	var a=1000
+    function loadMore() {
+        var jsContent = "";
+        var loadMoreContent = "<div id='load_more_content' class='red_load_more_content'>上拉加载更多</div>";
+        $("#load_more_content").remove();
+        for (var i = 0; i < 16; i++) {
+            jsContent += "<div class='red_list'>PullUpLoadMore " + i + "</div>";
+        }
+		
+		a+=10
+        jsContent+=loadMoreContent;
+        $("#id_list").append(jsContent);
+        $("#id_list").css({'width':'100%'})
+        $("#id_list").css({'height':a})
+        
+    }
+//  $(function(){
+//      loadMore();
+//  });
+    //  监听指定组件滑动
+    $("#id_list").scroll(function(){
+//      console.log("   $(\"this\").scrollHeight    " + $(this)[0].scrollHeight);
+//      console.log("   $(this).height()    " + $(this).height());
+//      console.log("   $(this)[0].scrollTop    " + $(this)[0].scrollTop);
+        //  滑到底结果为->$(this)[0].scrollTop+$(this).height()+20=$(this)[0].scrollHeight
+        //  60应该是一半的Item高度
+        if($(this)[0].scrollTop+$(this).height()+20+60>=$(this)[0].scrollHeight){
+            setTimeout(function(){
+                loadMore();
+                console.log(a)
+            },1000)
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

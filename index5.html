@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	</head>
+	<body>
+		<form action="" method="get" class="three"> 
+			<label><input name="Fruit" type="checkbox" value="入门课程" style="width:15px;" /> <span>入门课程 </span> </label> 
+			<label><input name="Fruit" type="checkbox" value="基础课程（AI）" style="width:15px;"  /> <span>基础课程（AI）</span> </label> 
+			<label><input name="Fruit" type="checkbox" value="中级课程" style="width:15px;"  /> <span>中级课程</span> </label> 
+			<label><input name="Fruit" type="checkbox" value="高级课程" style="width:15px;"  /> <span>高级课程</span> </label> 
+			<label><input name="Fruit" type="checkbox" value="专项课程" style="width:15px;"  /> <span>专项课程</span> </label> 
+		</form> 
+		<div id="box" onclick="del(7)">
+			点击
+		</div>
+		<form id="frmTmp">
+		<fieldset>
+		    <legend>属性required</legend>
+		        <input name="text" type="text" class="inputtxt"required>
+		        <input name="frmSubmit" type="submit" class="inputbtn" value="提交">
+		    </fieldset>
+		</form>
+		<script type="text/javascript">
+			$("#box").click(function(){
+				
+//				console.log($('.three input:checked').map(function (index, elem) {
+//          return $(elem).val('ok');
+//      }).get().join(','))
+var a='';
+var one=''
+				$.ajax({
+					type:"get",
+					url:"./js/moni3.json",
+					success:function(data){
+//						for(var i=0;i<data.list[0].Lable.length;i++){
+//							console.log(data.list[0].Lable[i].LabelName)
+//						}
+						$('.three input').map(function (index, elem) {
+				            return $(elem).val(data.list[1].Lable[index].LabelID);
+				        })
+						
+						a+=$('.three input:checked').map(function (index, elem) {
+				            return $(elem).val()
+				        }).get().join()
+				        var a1=a.split(',')
+				        
+						for(var i=0;i<a1.length;i++){
+							one+='{"LabelType":1,"LabelID":'+a1[i]+'},'
+//							console.log(one)
+							var A1 = one.slice(0,one.length-1)
+							console.log(A1)
+						}
+				        
+					},
+					error:function(){
+						console.log("diaoqushbai ")
+					}
+				});
+			})
+			
+			function del(a){
+				alert(a)
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div class="box">
+			
+		</div>
+		
+		<script type="text/javascript">
+			for(var i=1;i<=9;i++){
+				for(var j=1;j<=9;j++){
+					if(i>=j){
+						document.querySelector('.box').innerHTML+=j+"*"+i+"="+i*j+" "
+					}
+					
+//					document.querySelector(".box").innerHTML+='<br>'
+				}
+				
+				document.querySelector(".box").innerHTML+='<br>'
+			}
+			
+			
+			
+			
+			
+			
+			
+			 $(".search1").click(function () {
+			 	$.ajax({
+                    url: "/ajax/webinar/webinar_statistics.ashx",
+                    type: "post",
+                    //contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: {
+                        "cid": cid,
+                        
+                        "wid": wid,
+                        "stime": stime,
+                        "etime": etime
+                    },
+                    success: function (data) {
+                    	 $(".bm").click(function () {
+                    	 	alert(000)
+                    	 })
+                    }
+                 })
+			 })
+		</script>
+	</body>
+</html>

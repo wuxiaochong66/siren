@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Zepto练习</title>
+		<script type="text/javascript" src="js/zepto.js"></script>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<style type="text/css">
+			.One{
+				color: yellow;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+		    <li>list item 1</li>
+		    <li>list item 2</li>
+		    <li>list item 3</li>
+		</ul>
+		<div class="one">
+			<p>a paragraph<span>000</span></p>
+			<p>a paragraph<span>111</span></p>
+		</div>
+		<p>a paragraph<span>111</span></p>
+		<div class="two">
+			第二个盒子
+		</div>
+		<button>点击</button>
+		
+		
+		
+		<script>
+			$(function(){
+//				$(".two").text(data.model.TotalCount)
+				$.ajax({
+					type:"get",
+					url:"js/moni.json",
+					success:function(data){
+						$(".two").text(data.Model.TotalCount)
+					},
+					error:function(){
+						console.log("调取失败")
+					}
+				});
+			})
+		</script>
+		
+		
+		
+		<script type="text/javascript">
+//			$('.two').live('click',function(e){
+//				alert("第二个盒子")
+//			})
+			//将div下面的span跟li放到一块
+			$('li').add('span','div').css('background-color', 'red');
+			//为ul下面的第一个li添加类名
+			$('ul li:nth-child(1)').addClass('One')
+			//在元素.one后面添加<p>A note below the label</p>  外部插入
+			$('.one').after('<p>A note below the label</p>')
+			//内部插入
+			$('.one').append('<p>A note below the append</p>')
+			$('.one').append('<p>A note below the append2</p>')
+			$('.one').after('<p>A note below the label2</p>')
+			//appendTo：添加到
+			$('<li>new list item</li>').appendTo('ul')
+			
+			$('.one').before('<p>See the following table:before1</p>')
+			$('.one').before('<p>See the following table:before2</p>')
+			//选择最后一个li
+			console.log($("li").eq(-1)[0].innerHTML)
+			
+			
+			//循环数组
+			var hash = { name: 'zepto.js', size: 'micro' }
+			$.each(hash, function(key, value){
+			  console.log( key+':'+value)
+			})
+			//循环数组
+			$.each(['a', 'b', 'c'], function(index, item){
+			  console.log( index, item)
+			})
+			
+			$.fn.empty = function(){
+			  return this.each(function(){ 
+			  	this.innerHTML = '' 
+			  })
+			}
+			//获得一个新数组
+			$.grep([1,2,3],function(item){
+			    return item > 1
+			});
+			//查找“abc”，返回他所在的索引值（从0开始）
+			$.inArray("abc",["bcd","abc","edf","aaa"],1);
+			//解析字符串
+			console.log($.parseJSON("7889"))
+			//删除字符串收尾的空白符
+			console.log($.trim("  地方80989  "))
+			//判断元素的类型
+			console.log($.type('888'))
+		</script>
+	</body>
+	<script>
+		$('.one').click(function(e){
+			console.log(e.clientX,e.clientY)
+		})
+		$('.two').click(function(e){
+			console.log(e)
+			console.log(e.timeStamp)
+			console.log('其好困呀 ，怎么办')
+			
+			
+		})
+	</script>
+</html>

@@ -1,0 +1,11 @@
+{
+	"cid":"0",
+	"time":"2018-11-9",
+	"Model":{
+		"TotalCount":"300",
+		"PlatinaCount":"400",
+		"GoldCount":"500",
+		"SilverCount":"600",
+		"CopperCount":"700"
+	}
+}

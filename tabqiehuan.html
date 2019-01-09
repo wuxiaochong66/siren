@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>TAB切换</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 400px;
+				height: 400px;
+				margin: 0 auto;
+			}
+			ul{
+				width: 400px;
+				height: 40px;
+				display: block;
+			}
+			ul li {
+				width: 130px;
+				height: 40px;
+				float: left;
+				list-style: none;
+				text-align: center;
+				line-height: 40px;
+			}
+			.one{
+				width: 400px;
+				height: 300px;
+				background: red;
+				display: none;
+			}
+			.two{
+				width: 400px;
+				height: 300px;
+				background: green;
+				display: none;
+			}
+			.three{
+				width: 400px;
+				height: 300px;
+				background: yellow;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li>one</li>
+				<li>two</li>
+				<li>three</li>
+			</ul>
+			<div class="one"></div>
+			<div class="two"></div>
+			<div class="three"></div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var oLi=document.querySelectorAll('ul li')
+			var oDiv=document.querySelectorAll('.box div')
+			for(var i=0;i<oLi.length;i++){
+				oLi[i].index=i  //定义index变量
+				oLi[i].onclick=function(){
+					for(var i =0; i < oLi.length; i++){
+                        oLi[i].style.color = "black";
+                        oDiv[i].style.display = "none";
+                   	}
+					this.style.color="red"
+					oDiv[this.index].style.display="block"
+				}
+			}
+		</script>
+	</body>
+</html>

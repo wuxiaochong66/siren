@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>模糊查询</title>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js">
+			
+		</script>
+	</head>
+	<body>
+		<!--<table border="1" cellspacing="0" cellpadding="0" id="table">
+			<tr>
+				<th>学号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>年龄</th>
+			</tr>
+			<tr>
+				<td>2000</td>
+				<td>张三</td>
+				<td>男</td>
+				<td>18</td>
+			</tr>
+			<tr>
+				<td>1998</td>
+				<td>李四</td>
+				<td>男</td>
+				<td>20</td>
+			</tr>
+			<tr>
+				<td>1997</td>
+				<td>王五</td>
+				<td>女</td>
+				<td>23</td>
+			</tr>
+		</table>-->
+		<ul id="table">
+			<li id="theader">姓名列表</li>
+			<li>张三</li>
+			<li>李四</li>
+			<li>王五</li>
+			<li>源流</li>
+		</ul>
+		<input type="text" name="input" id="input" value="" placeholder="请输入查询关键字"/>
+		
+		<script>
+			var text = "";
+			//实时筛选，不用点击按钮
+			setInterval(function(){
+				text = $('#input').val();//获取文本框输入
+				if($.trim(text) != ""){
+						$("#table li:not('#theader')").hide().filter(":contains('"+text+"')").show();
+				}else{
+					$('#table li').show();//当删除文本框的内容时，又重新显示表格所有内容
+				}
+			},100);
+
+		</script>
+	</body>
+</html>
